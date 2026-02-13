@@ -80,7 +80,7 @@
         }
 
         /* Blur image on hover */
-        .project-card:hover .project-image {
+        .project-card:not(.active):hover .project-image {
             filter: blur(4px);
         }
 
@@ -131,6 +131,101 @@
             border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
+        /* Expanded view styles */
+        .projects-grid.expanded .project-card:not(.active) {
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .project-card.active {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90vw;
+            height: 90vh;
+            max-width: 1200px;
+            max-height: 600px;
+            border-radius: 0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+        }
+
+        .project-card.active .project-image {
+            flex: 0 0 50%;
+            width: 50%;
+            aspect-ratio: auto;
+            height: 100%;
+        }
+
+        .project-card.active .project-content {
+            position: relative;
+            opacity: 1;
+            pointer-events: auto;
+            flex: 0 0 50%;
+            width: 50%;
+            background: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .project-card.active .project-content h3 {
+            font-size: 2.5rem;
+            color: #222;
+            margin: 0 0 20px 0;
+            text-shadow: none;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        .project-card.active .project-content p {
+            display: block;
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .project-card.active .project-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .project-card.active .tag {
+            display: inline-block;
+        }
+
+        .project-card.active .project-link {
+            display: inline-block;
+        }
+
+        .close-expanded {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            font-size: 3rem;
+            color: #333;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 0;
+            font-weight: bold;
+        }
+
+        .close-expanded:hover {
+            color: #667eea;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2em;
@@ -138,6 +233,35 @@
 
             .projects-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .project-card.active {
+                flex-direction: column;
+                width: 95vw;
+                height: auto;
+                max-height: 90vh;
+            }
+
+            .project-card.active .project-image {
+                flex: 0 0 40%;
+                width: 100%;
+                aspect-ratio: 1/1;
+            }
+
+            .project-card.active .project-content {
+                flex: 0 0 60%;
+                width: 100%;
+                padding: 20px;
+            }
+
+            .project-card.active .project-content h3 {
+                font-size: 1.8rem;
+            }
+
+            .close-expanded {
+                top: 10px;
+                right: 15px;
+                font-size: 2rem;
             }
         }       
         
@@ -162,12 +286,11 @@
                 <div class="project-image" style="background-image: url('dadbaitvacationsim.jpg'); background-size: cover; background-position: center;"></div>
                 <div class="project-content">
                     <h3>Dadbait</h3>
-                    <p>Visual novel with interactive storytelling and immersive sound design.</p>
+                    <p>Romantic visual novel developed by Hollowpup. <br> 18+ only.</p>
                     <div class="project-tags">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">HTML/CSS</span>
+                        <a href="https://www.patreon.com/posts/dadbait-dating-119050467" target="_blank">View Project →</a>            
                     </div>
-                    <a href="#" class="project-link">View Project →</a>
+
                 </div>
             </div>
 
@@ -175,12 +298,11 @@
                 <div class="project-image" style="background-image: url('buttoncity.jpg'); background-size: cover; background-position: center;"></div>
                 <div class="project-content">
                     <h3>Button City</h3>
-                    <p>Modern landing page for a tech startup with smooth scrolling, animations, and call-to-action optimization.</p>
+                    <p>Narrative driven adventure game developed by Subliminal.</p>
                     <div class="project-tags">
-                        <span class="tag">HTML/CSS</span>
-                        <span class="tag">JavaScript</span>
+                         <a href="https://www.buttoncitygame.com" target="_blank">View Project →</a>   
                     </div>
-                    <a href="#" class="project-link">View Project →</a>
+                    
                 </div>
             </div>
 
@@ -188,12 +310,12 @@
                 <div class="project-image" style="background-image: url('guildlings.png'); background-size: cover; background-position: center;"></div>
                 <div class="project-content">
                     <h3>Guildlings</h3>
-                    <p>Interactive data visualization tool displaying complex datasets with multiple chart types and filtering options.</p>
+                    <p>Adventure RPG game developed by Sirvo Studios for Apple Arcade. </p>
                     <div class="project-tags">
-                        <span class="tag">D3.js</span>
-                        <span class="tag">Python</span>
+                        <a href="https://www.youtube.com/watch?v=cRnX-b11p0Y" target="_blank">View Project →</a>  
+                        
                     </div>
-                    <a href="#" class="project-link">View Project →</a>
+                    
                 </div>
             </div>
 
@@ -201,12 +323,12 @@
                 <div class="project-image" style="background-image: url('moviestar.jpg'); background-size: cover; background-position: center;"></div>
                 <div class="project-content">
                     <h3>Vallcobear</h3>
-                    <p>Composition, production and performance.</p>
+                    <p>Music project exploring global club culture.</p>
                     <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Chart.js</span>
+                          <a href="https://vallcobear.bandcamp.com/album/movie-star" target="_blank">View Project →</a> 
+                       <span class="tag">All tracks written, produced and performed by Devin Gabriel. </span>
                     </div>
-                    <a href="#" class="project-link">View Project →</a>
+                   
                 </div>
             </div>
 
@@ -214,13 +336,12 @@
                 <div class="project-image" style="background-image: url('PBSTEP.jpg'); background-size: cover; background-position: center;"></div>
                 <div class="project-content">
                     <h3>Post Boy</h3>
-                    <p>Composition, production and performance.</p>
-                    <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">MongoDB</span>
+                    <p>Music project with an emphasis on Shoegaze, Indie Pop and Electronic music. </p>
+               <div class="project-tags">
+                          <a href="https://galaxyswimteam.bandcamp.com/album/post-boy-ep-gst-19" target="_blank">View Project →</a> 
+                       <span class="tag">All tracks co-written and produced by Devin Gabriel, Adrian Leifson and Jason Hallyburton. </span>
                     </div>
-                    <a href="#" class="project-link">View Project →</a>
+                   
                 </div>
             </div>
 
@@ -228,19 +349,77 @@
                 <div class="project-image" style="background-image: url('brieflycover.jpg'); background-size: cover; background-position: center;"></div>
                 <div class="project-content">
                     <h3>Jr. Adelberg</h3>
-                    <p>Responsive mobile-first application with intuitive navigation and modern UI/UX design patterns.</p>
+                    <p>Music project focused on the Midwest Emo movement.</p>
                     <div class="project-tags">
-                        <span class="tag">React Native</span>
-                        <span class="tag">Firebase</span>
+                            <a href="https://galaxyswimteam.bandcamp.com/album/it-happens-too-briefly-to-know-gst-14" target="_blank">View Project →</a>
+                        <span class="tag">All tracks co-written and produced by Devin Gabriel, Adrian Leifson and Jason Hallyburton.</span>
+                        
                     </div>
-                    <a href="#" class="project-link">View Project →</a>
+                  
                 </div>
             </div>
         </div>
 
         <footer>
-            <p>&copy; 2026 My Portfolio. All rights reserved.</p>
+            <p>&copy; 2026 Devin Gabriel. All rights reserved.</p>
         </footer>
     </div>
+
+    <script>
+        const projectCards = document.querySelectorAll('.project-card');
+        const grid = document.querySelector('.projects-grid');
+        let activeCard = null;
+
+        projectCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (activeCard === this) return;
+                
+                // Close existing expanded view
+                if (activeCard) {
+                    activeCard.classList.remove('active');
+                    grid.classList.remove('expanded');
+                    const oldCloseBtn = document.querySelector('.close-expanded');
+                    if (oldCloseBtn) oldCloseBtn.remove();
+                }
+                
+                // Open new expanded view
+                activeCard = this;
+                this.classList.add('active');
+                grid.classList.add('expanded');
+                
+                // Create close button
+                const closeBtn = document.createElement('button');
+                closeBtn.className = 'close-expanded';
+                closeBtn.innerHTML = '&times;';
+                closeBtn.addEventListener('click', closeExpandedView);
+                document.body.appendChild(closeBtn);
+            });
+        });
+
+        function closeExpandedView() {
+            if (activeCard) {
+                activeCard.classList.remove('active');
+                grid.classList.remove('expanded');
+                activeCard = null;
+            }
+            const closeBtn = document.querySelector('.close-expanded');
+            if (closeBtn) closeBtn.remove();
+        }
+
+        // Close on background click (outside the card)
+        document.addEventListener('click', function(e) {
+            if (activeCard && !activeCard.contains(e.target) && !e.target.classList.contains('close-expanded')) {
+                closeExpandedView();
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && activeCard) {
+                closeExpandedView();
+            }
+        });
+    </script>
 </body>
 </html>
